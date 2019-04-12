@@ -4,13 +4,10 @@ dico_seasons = {1: 'Winter', 2: 'Spring', 3: 'Summer', 4: 'Fall'}
 
 def process(df_raw : pd.DataFrame):
 
-    df_data = df_raw.copy()
+    df_data = df_raw.drop('temp', axis=1)
 
     df_data['datetime'] = pd.to_datetime(df_data["datetime"])
     df_data['hour'] = df_data['datetime'].apply(lambda d: d.hour)
-    #df_data['day']=df_data['datetime'].apply(lambda d : d.day)
-    #df_data['month']=df_data['datetime'].apply(lambda d : d.month)
-    #df_data['year']=df_data['datetime'].apply(lambda d : d.year)
 
     df_data['season'] = df_data['season'].apply(lambda s: dico_seasons[s])
 
